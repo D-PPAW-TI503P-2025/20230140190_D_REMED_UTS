@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors'); // ⬅️ TAMBAH INI
 
 const bookRoutes = require('./routes/bookRoutes');
 const borrowRoutes = require('./routes/borrowRoutes');
@@ -6,6 +7,7 @@ const borrowRoutes = require('./routes/borrowRoutes');
 const app = express();
 
 // Middleware global
+app.use(cors());              // ⬅️ TAMBAH INI
 app.use(express.json());
 
 // Routes
