@@ -1,33 +1,61 @@
 Sistem Perpustakaan dengan Geolokasi
+Deskripsi Proyek
 
-Aplikasi web perpustakaan sederhana yang dibuat dengan React (frontend) dan Node.js + Express (backend).
-Pengguna bisa melihat dan meminjam buku, sedangkan admin bisa mengelola data buku.
+Sistem Perpustakaan dengan Geolokasi adalah aplikasi web sederhana untuk manajemen perpustakaan yang dibangun menggunakan React sebagai frontend dan Node.js + Express.js sebagai backend.
 
-Setiap kali buku dipinjam, sistem akan mengambil lokasi pengguna (latitude & longitude) dari GPS browser dan menyimpannya ke database sebagai riwayat peminjaman.
+Aplikasi ini memungkinkan pengguna (user) untuk melihat dan meminjam buku, serta memungkinkan admin untuk mengelola data buku.
+Setiap proses peminjaman buku akan mengambil lokasi pengguna (latitude & longitude) dari GPS browser, kemudian menyimpannya ke database sebagai riwayat peminjaman.
+
+Sistem juga menerapkan pemisahan hak akses antara admin dan user.
+
+Aturan Bisnis Sistem
+
+Role Based Access
+
+Admin
+
+Bisa menambah, mengedit, dan menghapus buku.
+
+Bisa melihat seluruh riwayat peminjaman semua user.
+
+Tidak boleh meminjam buku.
+
+User
+
+Hanya bisa melihat daftar buku dan meminjam buku.
+
+Tidak bisa mengakses fitur CRUD buku.
+
+Validasi Lokasi
+
+Setiap peminjaman wajib menyertakan koordinat lokasi dari GPS browser.
+
+Manajemen Stok
+
+Stok buku otomatis berkurang saat buku berhasil dipinjam.
+
+Buku tidak bisa dipinjam jika stok sudah habis.
 
 Fitur Utama
+Untuk User
 
-Registrasi dan login pengguna.
-
-User dapat:
+Registrasi dan login akun.
 
 Melihat daftar buku.
 
-Meminjam buku dengan konfirmasi lokasi di peta.
+Meminjam buku dengan konfirmasi lokasi pada peta.
 
-Melihat riwayat peminjaman sendiri.
+Melihat riwayat peminjaman milik sendiri.
 
-Admin dapat:
+Untuk Admin
 
-Menambah, mengedit, dan menghapus buku.
+Melihat daftar buku.
 
-Melihat seluruh riwayat peminjaman semua user.
+Menambah buku baru.
 
-Stok buku otomatis berkurang saat dipinjam.
+Mengedit dan menghapus buku.
 
-Buku tidak bisa dipinjam jika stok habis.
-
-Akun admin tidak diperbolehkan meminjam buku.
+Melihat seluruh riwayat peminjaman dari semua user.
 
 Teknologi yang Digunakan
 
@@ -39,30 +67,45 @@ Database: MySQL
 
 ORM: Sequelize
 
-Geolokasi: Geolocation API pada browser
+Geolocation: Geolocation API pada browser
 
-Hak Akses (Role)
+Autentikasi sederhana: Header request (x-user-role dan x-user-id)
 
-Dibedakan menggunakan header pada request:
+Mekanisme Hak Akses (Header)
 
-x-user-role: admin → boleh kelola buku & lihat semua riwayat
+Hak akses dibedakan menggunakan header pada setiap request API:
 
-x-user-role: user → hanya boleh meminjam buku
+x-user-role: admin
+→ boleh mengelola buku dan melihat semua riwayat peminjaman
 
-x-user-id → identitas user saat melakukan peminjaman
+x-user-role: user
+→ hanya boleh meminjam buku dan melihat riwayat sendiri
+
+x-user-id: <id_user>
+→ identitas user saat melakukan peminjaman atau melihat riwayatnya
 
 Endpoint Utama API
+Buku
 
-GET /api/books → melihat semua buku
+GET /api/books
+Melihat semua buku
 
-POST /api/books (admin) → menambah buku
+POST /api/books (admin)
+Menambah buku baru
 
-PUT /api/books/:id (admin) → mengubah buku
+PUT /api/books/:id (admin)
+Mengubah data buku
 
-DELETE /api/books/:id (admin) → menghapus buku
+DELETE /api/books/:id (admin)
+Menghapus buku
 
-POST /api/borrow (user) → meminjam buku + menyimpan lokasi
+Peminjaman
 
-GET /api/borrow (admin) → melihat semua riwayat peminjaman
+POST /api/borrow (user)
+Meminjam buku dan menyimpan lokasi pengguna
 
-GET /api/borrow/user/:id (user) → melihat riwayat peminjaman sendiri
+GET /api/borrow (admin)
+Melihat semua riwayat peminjaman
+
+GET /api/borrow/user/:id (user)
+Melihat riwayat peminjaman milik user tersebut
