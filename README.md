@@ -90,8 +90,49 @@ Hak akses dibedakan menggunakan header pada request:
 |<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/9ddb200a-37b2-4fee-8800-496dd43f1f2f" /> | <img width="1919" height="895" alt="image" src="https://github.com/user-attachments/assets/c675b418-559b-4916-93f9-c8d5059df553" /> | <img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/f4e656ef-be4a-4a6d-bb0c-3e38b3a1ea29" />
  |
 
-### Postman
+## Postman
 
 ### 1. Cek Backend
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/27a7a17d-a582-4423-833b-56fdf9b5def7" />
+
+### 2. Register User
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7da9b5f9-37c3-4d5b-a51f-efbdc9df5aef" />
+
+### 3.Login user
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8008f4ab-30cb-4a84-8ded-b6a8a3a82448" />
+
+### 4. Login Admin
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9db5e0d5-79fe-4089-be56-80a497b68ea9" />
+
+### 5. Admin Menambahkan Buku
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/000837db-012c-4a75-8062-4d94f3009805" />
+
+### 6. Melihat daftar buku ( admin dan user )
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3edb484b-3313-4b50-9dbb-d137f62266c5" />
+
+### 7. user pinjam buku
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f740d6e0-f8bf-4134-bd7f-ee60c58029ad" />
+
+### 8. Admin melihat riwayat peminjaman buku
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dc00b2bd-0ecd-46ae-a8fd-12ae64b35c91" />
+
+### 9. User melihat riwayat peminjaman ia sendiri
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/468a8c5a-0568-4796-9ea7-6566fdca76a5" />
+
+### DATABASE
+## 1. Tabel buku
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0189a15b-d5bf-4e21-bc16-c55c8b3a5953" />
+## 2. Tabel Peminjaman
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f6ecc164-b418-472f-9dfa-36df4bf94113" />
+## 3. Tabel user
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b655f608-d611-4a3c-8c6d-64a10ce3e990" />
+
+
+
+
+
+
+
+
+
 
