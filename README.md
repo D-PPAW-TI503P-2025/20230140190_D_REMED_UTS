@@ -69,6 +69,14 @@ Hak akses dibedakan menggunakan header pada request:
 
   ## Dokumentasi Screenshot
 
+  ### Halaman Autentikasi
+
+| Login | Register |
+|-------|----------|
+|<img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/138e19ca-0cfa-4e96-9180-15d0b07e9c05" /> |<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/8d4eeced-e8e8-4ff3-bb03-a8ecfafa4d24" />
+ |
+
+
 ### Tampilan Admin
 
 | Daftar Buku (Admin) | Tambah Buku (Admin) | Riwayat Peminjaman (Admin) |
