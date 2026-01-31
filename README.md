@@ -1,8 +1,68 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8338cc4e-4bfe-4986-b6b9-d232f5291411" /> test endpoint
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/ca75f21e-c6ff-42ce-bee8-ed0a413dbb1a" /> Admin post buku
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/03be9538-3e32-421b-adac-cf660f03822e" /> Admin Get buku
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f46f7e98-8ff9-413e-84ae-0e57ff5efa69" /> user tidak bisa menambahkan buku
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/de44c8aa-d268-45ab-9bd9-b227cc3d37b7" /> Peminjaman buku
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/58433369-8284-41f7-8846-af00e98f90d8" /> database
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/22bf226c-f770-434f-aa4e-13594a1b70d5" /> Tampilan
+Sistem Perpustakaan dengan Geolokasi
 
+Aplikasi web perpustakaan sederhana yang dibuat dengan React (frontend) dan Node.js + Express (backend).
+Pengguna bisa melihat dan meminjam buku, sedangkan admin bisa mengelola data buku.
+
+Setiap kali buku dipinjam, sistem akan mengambil lokasi pengguna (latitude & longitude) dari GPS browser dan menyimpannya ke database sebagai riwayat peminjaman.
+
+Fitur Utama
+
+Registrasi dan login pengguna.
+
+User dapat:
+
+Melihat daftar buku.
+
+Meminjam buku dengan konfirmasi lokasi di peta.
+
+Melihat riwayat peminjaman sendiri.
+
+Admin dapat:
+
+Menambah, mengedit, dan menghapus buku.
+
+Melihat seluruh riwayat peminjaman semua user.
+
+Stok buku otomatis berkurang saat dipinjam.
+
+Buku tidak bisa dipinjam jika stok habis.
+
+Akun admin tidak diperbolehkan meminjam buku.
+
+Teknologi yang Digunakan
+
+Frontend: React
+
+Backend: Node.js & Express.js
+
+Database: MySQL
+
+ORM: Sequelize
+
+Geolokasi: Geolocation API pada browser
+
+Hak Akses (Role)
+
+Dibedakan menggunakan header pada request:
+
+x-user-role: admin → boleh kelola buku & lihat semua riwayat
+
+x-user-role: user → hanya boleh meminjam buku
+
+x-user-id → identitas user saat melakukan peminjaman
+
+Endpoint Utama API
+
+GET /api/books → melihat semua buku
+
+POST /api/books (admin) → menambah buku
+
+PUT /api/books/:id (admin) → mengubah buku
+
+DELETE /api/books/:id (admin) → menghapus buku
+
+POST /api/borrow (user) → meminjam buku + menyimpan lokasi
+
+GET /api/borrow (admin) → melihat semua riwayat peminjaman
+
+GET /api/borrow/user/:id (user) → melihat riwayat peminjaman sendiri
