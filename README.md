@@ -75,3 +75,11 @@ Hak akses dibedakan menggunakan header pada request:
 |---------------------|----------------------|----------------------------|
 | <img width="1919" height="1007" alt="image" src="https://github.com/user-attachments/assets/1cbaec51-8552-485a-adde-e041fc617908" />| <img width="1919" height="898" alt="image" src="https://github.com/user-attachments/assets/2d458e8a-83f1-4b5b-b3d7-9440b9e9a1de" />| <img width="1919" height="1011" alt="image" src="https://github.com/user-attachments/assets/66c35587-05b5-45a5-a15e-9d7f538271bd" /> |
 
+### Tampilan User
+
+| Daftar Buku (User) | konfirmasi Lokasi | Riwayat Peminjaman (user) |
+|---------------------|----------------------|----------------------------|
+|<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/9ddb200a-37b2-4fee-8800-496dd43f1f2f" /> | <img width="1919" height="895" alt="image" src="https://github.com/user-attachments/assets/c675b418-559b-4916-93f9-c8d5059df553" /> | <img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/f4e656ef-be4a-4a6d-bb0c-3e38b3a1ea29" />
+ |
+
+
