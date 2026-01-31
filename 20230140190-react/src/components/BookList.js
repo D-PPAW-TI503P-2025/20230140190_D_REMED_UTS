@@ -1,59 +1,160 @@
 import React, { useEffect, useState } from 'react';
+import LokasiPinjam from './LokasiPinjam';
+import '../App.css';
 
-function BookList() {
+function BookList(props) {
   const [books, setBooks] = useState([]);
 
-  useEffect(() => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  const [coords, setCoords] = useState({ latitude: null, longitude: null });
+
+  const loadBooks = () => {
     fetch('http://localhost:3000/api/books')
       .then(res => res.json())
       .then(data => setBooks(data))
       .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    loadBooks();
   }, []);
 
+  // ===== USER PINJAM (pakai lokasi) =====
+  const handleBorrowClick = (bookId) => {
+    if (!navigator.geolocation) {
+      alert('Browser tidak mendukung GPS');
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCoords({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+        setSelectedBookId(bookId);
+        setShowModal(true);
+      },
+      () => alert('Lokasi tidak diizinkan')
+    );
+  };
+
+  const confirmBorrow = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    const res = await fetch('http://localhost:3000/api/borrow', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-user-role': 'user',
+        'x-user-id': user.id
+      },
+      body: JSON.stringify({
+        bookId: selectedBookId,
+        latitude: coords.latitude,
+        longitude: coords.longitude
+      })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.message);
+
+    alert('Berhasil meminjam buku');
+    setShowModal(false);
+    loadBooks();
+  };
+
+  // ===== ADMIN EDIT =====
+  const handleEdit = async (book) => {
+    const title = prompt('Judul baru:', book.title);
+    if (title === null) return;
+    const author = prompt('Penulis baru:', book.author);
+    if (author === null) return;
+    const stock = prompt('Stok baru:', book.stock);
+    if (stock === null) return;
+
+    const res = await fetch(`http://localhost:3000/api/books/${book.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-user-role': 'admin'
+      },
+      body: JSON.stringify({ title, author, stock: parseInt(stock) })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.message);
+
+    alert('Buku diupdate');
+    loadBooks();
+  };
+
+  // ===== ADMIN HAPUS =====
+  const handleDelete = async (id) => {
+    if (!window.confirm('Hapus buku ini?')) return;
+
+    const res = await fetch(`http://localhost:3000/api/books/${id}`, {
+      method: 'DELETE',
+      headers: { 'x-user-role': 'admin' }
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.message);
+
+    alert('Buku dihapus');
+    loadBooks();
+  };
+
   return (
-    <div
-      style={{
-        backgroundColor: '#ffffff',
-        borderRadius: '8px',
-        padding: '20px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
-      }}
-    >
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr style={{ backgroundColor: '#f0f4f8' }}>
-            <th style={thStyle}>No</th>
-            <th style={thStyle}>Judul Buku</th>
-            <th style={thStyle}>Penulis</th>
-            <th style={thStyle}>Stok</th>
-          </tr>
-        </thead>
-        <tbody>
-          {books.map((book, index) => (
-            <tr key={book.id}>
-              <td style={tdStyle}>{index + 1}</td>
-              <td style={tdStyle}>{book.title}</td>
-              <td style={tdStyle}>{book.author}</td>
-              <td style={tdStyle}>{book.stock}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <div className="book-grid">
+        {books.map((book) => (
+          <div className="book-card" key={book.id}>
+            <div className="book-title">{book.title}</div>
+            <div className="book-author">{book.author}</div>
+            <div className="book-stock">Stok: {book.stock}</div>
+
+            <div className="book-actions">
+              {props.mode === 'user' && (
+                <button
+                  className="btn-pinjam"
+                  onClick={() => handleBorrowClick(book.id)}
+                >
+                  Pinjam
+                </button>
+              )}
+
+              {props.mode === 'admin' && (
+                <>
+                  <button
+                    className="btn-edit"
+                    onClick={() => handleEdit(book)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn-hapus"
+                    onClick={() => handleDelete(book.id)}
+                  >
+                    Hapus
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <LokasiPinjam
+        visible={showModal}
+        latitude={coords.latitude}
+        longitude={coords.longitude}
+        onConfirm={confirmBorrow}
+        onCancel={() => setShowModal(false)}
+      />
+    </>
   );
 }
-
-const thStyle = {
-  textAlign: 'left',
-  padding: '12px',
-  fontWeight: 'bold',
-  fontSize: '14px'
-};
-
-const tdStyle = {
-  padding: '12px',
-  borderTop: '1px solid #eee',
-  fontSize: '14px'
-};
 
 export default BookList;

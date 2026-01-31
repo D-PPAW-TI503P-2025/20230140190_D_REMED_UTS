@@ -36,3 +36,251 @@
     transform: rotate(360deg);
   }
 }
+/* ===== Navbar ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111827;
+  color: white;
+  padding: 14px 30px;
+}
+
+.navbar-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.btn-logout {
+  background: #dc2626;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #b91c1c;
+}
+
+/* ===== Menu tengah ===== */
+.menu-center {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  background: #f3f4f6;
+  padding: 16px 0;
+}
+
+.btn-menu {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #e5e7eb;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-menu.active {
+  background: #2563eb;
+  color: white;
+}
+
+/* ===== Konten ===== */
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.subtext {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* ===== Card tabel ===== */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* ===== Tabel ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 14px;
+  background: #f9fafb;
+  font-size: 14px;
+}
+
+td {
+  padding: 14px;
+  border-top: 1px solid #f1f1f1;
+  font-size: 14px;
+}
+
+/* ===== Tombol user ===== */
+.btn-pinjam {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-pinjam:hover {
+  background: #15803d;
+}
+
+/* ===== Tombol admin ===== */
+.btn-edit {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.btn-hapus {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(to bottom, #f8fafc, #e5e7eb);
+}
+/* ===== Navbar admin putih ===== */
+.navbar-white {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 14px 30px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navbar-title-dark {
+  font-weight: bold;
+  font-size: 18px;
+  color: #111827;
+}
+
+.navbar-user-dark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #111827;
+}
+
+/* menu sejajar judul */
+.menu-inline {
+  display: flex;
+  gap: 12px;
+}
+
+/* form tambah buku */
+.form-card {
+  max-width: 500px;
+}
+
+.form-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-vertical input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+/* ===== Grid Card Buku ===== */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.book-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.book-author {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.book-stock {
+  font-size: 13px;
+  margin-bottom: 14px;
+  color: #374151;
+}
+
+.book-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+
+
+

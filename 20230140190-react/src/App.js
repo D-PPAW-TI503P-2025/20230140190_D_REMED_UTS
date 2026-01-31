@@ -1,20 +1,49 @@
-import './App.css';
-import Navbar from './components/Navbar';
-import BookList from './components/BookList';
+import React, { useState } from 'react';
+import Login from './components/Login';
+import Register from './components/Register';
+import UserDashboard from './components/UserDashboard';
+import AdminDashboard from './components/AdminDashboard';
 
 function App() {
-  return (
-    <div style={{ backgroundColor: '#f5f7fa', minHeight: '100vh' }}>
-      {/* NAVBAR */}
-      <Navbar />
+  const [user, setUser] = useState(null);
+  const [page, setPage] = useState('login'); // 'login' | 'register'
 
-      {/* KONTEN UTAMA */}
-      <div style={{ padding: '30px' }}>
-        <h2 style={{ marginBottom: '20px' }}>Daftar Buku</h2>
-        <BookList />
-      </div>
-    </div>
-  );
+  const handleLogin = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setPage('login');
+    localStorage.removeItem('user');
+  };
+
+  // belum login
+  if (!user) {
+    if (page === 'register') {
+      return <Register onBackToLogin={() => setPage('login')} />;
+    }
+
+    return (
+      <Login
+        onLogin={handleLogin}
+        onShowRegister={() => setPage('register')}
+      />
+    );
+  }
+
+  // login sebagai user
+  if (user.role === 'user') {
+    return <UserDashboard user={user} onLogout={handleLogout} />;
+  }
+
+  // login sebagai admin
+  if (user.role === 'admin') {
+    return <AdminDashboard user={user} onLogout={handleLogout} />;
+  }
+
+  return null;
 }
 
 export default App;
