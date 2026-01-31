@@ -1,111 +1,68 @@
-Sistem Perpustakaan dengan Geolokasi
-Deskripsi Proyek
+# Sistem Perpustakaan dengan Geolokasi
 
-Sistem Perpustakaan dengan Geolokasi adalah aplikasi web sederhana untuk manajemen perpustakaan yang dibangun menggunakan React sebagai frontend dan Node.js + Express.js sebagai backend.
+Aplikasi web perpustakaan sederhana yang dibuat menggunakan **React** sebagai frontend dan **Node.js + Express** sebagai backend.
 
-Aplikasi ini memungkinkan pengguna (user) untuk melihat dan meminjam buku, serta memungkinkan admin untuk mengelola data buku.
-Setiap proses peminjaman buku akan mengambil lokasi pengguna (latitude & longitude) dari GPS browser, kemudian menyimpannya ke database sebagai riwayat peminjaman.
+Pengguna dapat melihat dan meminjam buku, sedangkan admin dapat mengelola data buku.  
+Setiap peminjaman buku akan mengambil lokasi pengguna (latitude & longitude) dari GPS browser dan menyimpannya ke database sebagai riwayat peminjaman.
 
-Sistem juga menerapkan pemisahan hak akses antara admin dan user.
+## Fitur Utama
 
-Aturan Bisnis Sistem
+### User
+- Melihat daftar buku.
+- Meminjam buku dengan konfirmasi lokasi di peta.
+- Melihat riwayat peminjaman sendiri.
 
-Role Based Access
+### Admin
+- Menambah buku.
+- Mengedit buku.
+- Menghapus buku.
+- Melihat seluruh riwayat peminjaman semua user.
 
-Admin
+### Aturan Sistem
+- Stok buku otomatis berkurang saat dipinjam.
+- Buku tidak bisa dipinjam jika stok habis.
+- Akun dengan role **admin tidak diperbolehkan meminjam buku**.
+- Setiap peminjaman wajib menyertakan data lokasi (latitude & longitude).
 
-Bisa menambah, mengedit, dan menghapus buku.
+## Teknologi yang Digunakan
+- Frontend: React
+- Backend: Node.js & Express.js
+- Database: MySQL
+- ORM: Sequelize
+- Geolokasi: Geolocation API (browser)
 
-Bisa melihat seluruh riwayat peminjaman semua user.
+## Hak Akses (Role)
 
-Tidak boleh meminjam buku.
+Hak akses dibedakan menggunakan header pada request:
 
-User
+- `x-user-role: admin`  
+  → boleh menambah, mengubah, menghapus buku dan melihat semua riwayat peminjaman
 
-Hanya bisa melihat daftar buku dan meminjam buku.
+- `x-user-role: user`  
+  → hanya boleh meminjam buku
 
-Tidak bisa mengakses fitur CRUD buku.
+- `x-user-id`  
+  → identitas user saat melakukan peminjaman
 
-Validasi Lokasi
+## Endpoint Utama API
 
-Setiap peminjaman wajib menyertakan koordinat lokasi dari GPS browser.
+- `GET /api/books`  
+  Melihat semua buku
 
-Manajemen Stok
+- `POST /api/books` (admin)  
+  Menambah buku
 
-Stok buku otomatis berkurang saat buku berhasil dipinjam.
+- `PUT /api/books/:id` (admin)  
+  Mengubah data buku
 
-Buku tidak bisa dipinjam jika stok sudah habis.
+- `DELETE /api/books/:id` (admin)  
+  Menghapus buku
 
-Fitur Utama
-Untuk User
+- `POST /api/borrow` (user)  
+  Meminjam buku + menyimpan lokasi
 
-Registrasi dan login akun.
+- `GET /api/borrow` (admin)  
+  Melihat semua riwayat peminjaman
 
-Melihat daftar buku.
-
-Meminjam buku dengan konfirmasi lokasi pada peta.
-
-Melihat riwayat peminjaman milik sendiri.
-
-Untuk Admin
-
-Melihat daftar buku.
-
-Menambah buku baru.
-
-Mengedit dan menghapus buku.
-
-Melihat seluruh riwayat peminjaman dari semua user.
-
-Teknologi yang Digunakan
-
-Frontend: React
-
-Backend: Node.js & Express.js
-
-Database: MySQL
-
-ORM: Sequelize
-
-Geolocation: Geolocation API pada browser
-
-Autentikasi sederhana: Header request (x-user-role dan x-user-id)
-
-Mekanisme Hak Akses (Header)
-
-Hak akses dibedakan menggunakan header pada setiap request API:
-
-x-user-role: admin
-→ boleh mengelola buku dan melihat semua riwayat peminjaman
-
-x-user-role: user
-→ hanya boleh meminjam buku dan melihat riwayat sendiri
-
-x-user-id: <id_user>
-→ identitas user saat melakukan peminjaman atau melihat riwayatnya
-
-Endpoint Utama API
-Buku
-
-GET /api/books
-Melihat semua buku
-
-POST /api/books (admin)
-Menambah buku baru
-
-PUT /api/books/:id (admin)
-Mengubah data buku
-
-DELETE /api/books/:id (admin)
-Menghapus buku
-
-Peminjaman
-
-POST /api/borrow (user)
-Meminjam buku dan menyimpan lokasi pengguna
-
-GET /api/borrow (admin)
-Melihat semua riwayat peminjaman
-
-GET /api/borrow/user/:id (user)
-Melihat riwayat peminjaman milik user tersebut
+- `GET /api/borrow/user/:id` (user)  
+  Melihat riwayat peminjaman milik sendiri
