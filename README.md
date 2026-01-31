@@ -90,4 +90,8 @@ Hak akses dibedakan menggunakan header pada request:
 |<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/9ddb200a-37b2-4fee-8800-496dd43f1f2f" /> | <img width="1919" height="895" alt="image" src="https://github.com/user-attachments/assets/c675b418-559b-4916-93f9-c8d5059df553" /> | <img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/f4e656ef-be4a-4a6d-bb0c-3e38b3a1ea29" />
  |
 
+### Postman
+
+### 1. Cek Backend
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/27a7a17d-a582-4423-833b-56fdf9b5def7" />
 
