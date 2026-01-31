@@ -66,3 +66,14 @@ Hak akses dibedakan menggunakan header pada request:
 
 - `GET /api/borrow/user/:id` (user)  
   Melihat riwayat peminjaman milik sendiri
+
+  ## Dokumentasi Screenshot
+
+### Tampilan Admin
+
+| Daftar Buku (Admin) | Tambah Buku (Admin) | Riwayat Peminjaman (Admin) |
+|---------------------|----------------------|----------------------------|
+| <img width="1919" height="1007" alt="image" src="https://github.com/user-attachments/assets/1cbaec51-8552-485a-adde-e041fc617908" />
+ | <img width="1919" height="898" alt="image" src="https://github.com/user-attachments/assets/2d458e8a-83f1-4b5b-b3d7-9440b9e9a1de" />
+|  |
+
